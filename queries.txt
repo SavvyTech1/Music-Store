@@ -1,0 +1,29 @@
+/* Query 1 */
+SELECT Genre.Name, count(track.TrackId) AS total_tracks 
+FROM Track 
+JOIN Genre ON Track.GenreId = Genre.GenreId
+GROUP BY Genre.Name
+ORDER BY count(Track.TrackId) DESC
+
+/* Query 2 */
+SELECT mediatype.Name, count(track.TrackId) AS total_tracks 
+FROM Track 
+JOIN MediaType ON Track.MediaTypeId = MediaType.MediaTypeId
+GROUP BY mediatype.Name
+ORDER BY count(Track.TrackId) DESC
+
+/* Query 3 */
+SELECT Album.Title, sum(track.Milliseconds) AS milliseconds_total
+FROM Track 
+JOIN Album ON Track.AlbumId = Album.AlbumId
+GROUP BY Album.Title
+ORDER BY sum(Track.Milliseconds) DESC
+Limit 10
+
+/* Query 4 */
+SELECT Genre.Name, sum(track.UnitPrice) AS total_spent 
+FROM Track 
+JOIN Genre ON Track.GenreId = Genre.GenreId
+GROUP BY Genre.Name
+ORDER BY sum(track.UnitPrice) DESC
+LIMIT 10
